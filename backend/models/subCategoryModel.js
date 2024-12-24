@@ -4,7 +4,8 @@ const {Schema, model} = mongoose;
 
 const subCategorySchema = new Schema({
   name: String,
-  catId: String,
+  id: String,
 });
 
-exports.SubCategory = model('category', subCategorySchema);
+
+exports.SubCategory = model('subCatagory', subCategorySchema);
