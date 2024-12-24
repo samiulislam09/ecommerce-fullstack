@@ -1,13 +1,17 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cors = require('cors');
+dotenv.config();
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors({origin: '*'}));
 const port = 3000;
 
-mongoose.connect('mongodb+srv://samiulislamsawon09:rd9zmY125udHGa5H@cluster0.9vnje.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect(process.env.MONGO_DB_URL);
 const db = mongoose.connection;
 db.on('error', (err)=>{
   console.log(err);
@@ -16,8 +20,16 @@ db.once('open', ()=>{
   console.log("connected to db");
 })
 
-app.post('/', (req, res)=>{
-  res.json({message: "Welcome to the application."});
+// Routes
+app.use('/api/categories', require('./routes/category'));
+app.use('/api/subCategories', require('./routes/SubCategory'));
+
+app.get('/', (req, res)=>{
+  res.status(200).json({success: true, message: "the api is woring successfully", data: []});
+})
+
+app.use((error, req, res, next)=>{
+  res.status(500).json({success: false, message: error.message, data:[]});
 })
 
 app.listen(port, ()=>{
