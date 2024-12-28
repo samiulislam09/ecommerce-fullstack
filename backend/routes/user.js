@@ -19,6 +19,11 @@ router.get('/:id', asyncHandler(async(req, res)=>{
 router.post('/', asyncHandler(async(req, res)=>{
   try{
     const {name, email, password} = req.body;
+    const userExists = await User.find({email});
+    if(userExists.length > 0){
+      res.status(400).json({success: false, message: "user already exists", data: []});
+      return;
+    }
     if(!name || !email || !password){
       res.status(400).json({success: false, message: "name, email and password are required", data: []});
     }
