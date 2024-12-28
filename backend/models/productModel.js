@@ -43,11 +43,6 @@ const ProductSchema = new Schema({
     ref: 'VariantType',
     required: true
   },
-  productVariantValueId: {
-    type: Schema.Types.ObjectId,
-    ref: 'VariantValue',
-    required: true
-  },
   productImages: {
     type: Array,
     required: [true, 'Product images is required'],
