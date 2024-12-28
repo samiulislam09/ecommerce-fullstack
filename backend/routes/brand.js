@@ -10,23 +10,26 @@ router.get('/', asyncHandler(async(req, res)=>{
   res.status(200).json({success: true, message: "brands fetched successfully", data: brands});
 }))
 
+// get a brand by id
+router.get('/:id', asyncHandler(async(req, res)=>{
+  const brand = await Brand.findById(req.params.id);
+  res.status(200).json({success: true, message: "brand fetched successfully", data: brand});
+}))
 
 // create a new brand
-router.post('/', upload.single('image'), asyncHandler(async(req, res)=>{
+router.post('/', asyncHandler(async(req, res, next)=>{
   try{
-      const {name} = req.body;
-      const image = req.file ? req.file.filename : null;
-      if(!name || !image){
-        res.status(400).json({success: false, message: "name and image are required", data: []});
+      const {name, subCategoryId} = req.body;
+      if(!name || !subCategoryId){
+        return res.status(400).json({success: false, message: "name and subCategoryId are required", data: []});
       }
-      const brand = new Brand({name, image});
+      const brand = new Brand({name, subCategoryId});
       await brand.save();
-      res.status(201).json({success: true, message: "category saved successfully", data: brand});
+      res.status(201).json({success: true, message: "brand saved successfully", data: brand});
     }catch(error){
       next(error);
     }
 }))
-
 
 // update a brand
 router.put('/:id', upload.single('image'), asyncHandler(async(req, res)=>{
