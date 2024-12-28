@@ -4,8 +4,12 @@ const {Schema, model} = mongoose;
 
 const userSchema = new Schema({
   name: String,
-  age: Number,
   email: String,
+  password: String,
+  isAdmin: {
+    type: Boolean,
+    default: false
+  },
 }, {timestamps: true});
 
 exports.User = model('User', userSchema);

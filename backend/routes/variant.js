@@ -1,5 +1,5 @@
 const express = require('express');
-const { VariantType } = require('../models/variant');
+const { VariantType } = require('../models/variantModel');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
 

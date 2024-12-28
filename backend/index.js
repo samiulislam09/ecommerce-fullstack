@@ -25,6 +25,11 @@ app.use('/api/categories', require('./routes/category'));
 app.use('/api/subCategories', require('./routes/SubCategory'));
 app.use('/api/brands', require('./routes/brand'));
 app.use('/api/coupn', require('./routes/coupon'));
+app.use('/api/products', require('./routes/product'));
+app.use('/api/users', require('./routes/user'));
+app.use('/api/orders', require('./routes/order'));
+app.use('/api/vairants', require('./routes/variant'));
+
 
 app.get('/', (req, res)=>{
   res.status(200).json({success: true, message: "the api is woring successfully", data: []});
