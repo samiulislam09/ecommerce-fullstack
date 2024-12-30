@@ -1,9 +1,69 @@
 import 'package:flutter/material.dart';
 
-var appbar = AppBar(
-  backgroundColor: Colors.grey[300],
+var appBar = Container(
+  height: 60,
+  color: Colors.white,
+  child: Padding(
+    padding: const EdgeInsets.only(left: 20, right: 20),
+    child: Row(
+      mainAxisAlignment:
+          MainAxisAlignment.spaceBetween, // Aligns all children horizontally
+      children: [
+        Text("D A S H B O A R D"),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.settings),
+        ),
+      ],
+    ),
+  ),
 );
 
+// middle section
+var middleSection = Padding(
+  padding: const EdgeInsets.only(left: 20, right: 20),
+  child: Container(
+    height: 50,
+    color: Colors.transparent,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text("My Dashboard"),
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 5, bottom: 5),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.add),
+                    Text(
+                      "Add New",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(width: 30),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.refresh),
+            ),
+          ],
+        )
+      ],
+    ),
+  ),
+);
+
+int currentIndex = 0;
 var drawer = Drawer(
   child: ListView(
     padding: EdgeInsets.zero,
